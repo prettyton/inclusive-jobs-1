@@ -85,7 +85,7 @@ const handleContinue = () => {
 
         {/* Footer */}
         <div className="footer">
-          <a href="#" className="learn-more">Not sure? Learn more</a>
+          <a href="https://www.inclusivejobs.com/learn-more" className="learn-more">Not sure? Learn more</a>
           <button 
             className="continue-button"
             onClick={handleContinue}
