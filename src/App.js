@@ -1276,7 +1276,7 @@ function Footer() {
       </div>
       <div style={{ maxWidth: 1140, margin: '40px auto 0', paddingTop: 24, borderTop: '1px solid rgba(255,255,255,0.08)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: 13 }}>
         <span>© 2026 InclusiveJobs. All rights reserved.</span>
-        <span> · Making careers inclusive</span>
+        <span> Making careers inclusive</span>
       </div>
     </footer>
   );
