@@ -1,335 +1,178 @@
 import React, { useState } from 'react';
-import { 
-  Eye, 
-  Ear, 
-  Accessibility, 
-  Brain, 
-  Zap, 
-  Heart, 
-  MessageCircle 
+import {
+  Eye,
+  Ear,
+  Accessibility,
+  Brain,
+  Zap,
+  Heart,
+  MessageCircle
 } from 'lucide-react';
 
 const SelectDisability = () => {
-const [selectedDisability, setSelectedDisability] = useState([]);
+  const [selectedDisability, setSelectedDisability] = useState([]);
 
   const disabilities = [
-    { id: 'visual', label: 'Visual Impairment', icon: Eye },
-    { id: 'hearing', label: 'Hearing Impairment', icon: Ear },
-    { id: 'mobility', label: 'Mobility', icon: Accessibility },
-    { id: 'cognitive', label: 'Cognitive / Learning', icon: Brain },
-    { id: 'neurodivergent', label: 'Neurodivergent', icon: Zap },
-    { id: 'mental', label: 'Mental Health', icon: Heart },
-    { id: 'speech', label: 'Speech', icon: MessageCircle },
+    { id: 'visual', label: 'Visual Impairment', icon: Eye, color: '#2cc5b0', bg: '#d6f5f0', desc: 'Screen-reader optimised listings & audio descriptions.' },
+    { id: 'hearing', label: 'Hearing Impairment', icon: Ear, color: '#ff7c5e', bg: '#fff0ec', desc: 'Sign-language support & captioning options.' },
+    { id: 'mobility', label: 'Mobility', icon: Accessibility, color: '#d4a017', bg: '#fef7dc', desc: 'Accessibility ratings & remote-friendly filters.' },
+    { id: 'cognitive', label: 'Cognitive / Learning', icon: Brain, color: '#6366f1', bg: '#eef2ff', desc: 'Simplified flows & step-by-step onboarding.' },
+    { id: 'neurodivergent', label: 'Neurodivergent', icon: Zap, color: '#ec4899', bg: '#fdf2f8', desc: 'Sensory-friendly workplace filters.' },
+    { id: 'mental', label: 'Mental Health', icon: Heart, color: '#f97316', bg: '#fff7ed', desc: 'Flexible scheduling & wellness resources.' },
+    { id: 'speech', label: 'Speech', icon: MessageCircle, color: '#22c55e', bg: '#f0fdf4', desc: 'Text-based interviews & AAC-compatible tools.' },
   ];
 
   const handleSelect = (id) => {
-  setSelectedDisability(prev => 
-    prev.includes(id) 
-      ? prev.filter(item => item !== id)  // Remove if already selected
-      : [...prev, id]                      // Add if not selected
-  );
-};
+    setSelectedDisability(prev =>
+      prev.includes(id)
+        ? prev.filter(item => item !== id)
+        : [...prev, id]
+    );
+  };
 
-const handleContinue = () => {
-  if (selectedDisability.length > 0) {
-    console.log('Selected disabilities:', selectedDisability);
-    const selected = selectedDisability.map(id => 
-      disabilities.find(d => d.id === id)?.label
-    ).join(', ');
-    alert(`You selected: ${selected}`);
-  }
-};
+  const handleContinue = () => {
+    if (selectedDisability.length > 0) {
+      const selected = selectedDisability
+        .map(id => disabilities.find(d => d.id === id)?.label)
+        .join(', ');
+      alert(`You selected: ${selected}`);
+    }
+  };
 
   return (
-    <div className="app-container">
-      <div className="content">
-        {/* Logo */}
-        <div className="logo">
-          <div className="logo-icon">
-            <div className="butterfly-left"></div>
-            <div className="butterfly-right"></div>
-          </div>
-          <span className="logo-text">INCLUSIVEJOBS.COM</span>
-        </div>
+    <div style={{ maxWidth: 700, margin: '0 auto' }}>
 
-        {/* Title Section */}
-        <div className="title-section">
-          <h1 className="main-title">Select your disability type</h1>
-          <p className="subtitle">This helps us tailor the experience to your accessibility needs.</p>
-        </div>
+      {/* Cards Grid */}
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+        gap: 14,
+      }}>
+        {disabilities.map((disability) => {
+          const IconComponent = disability.icon;
+          const isSelected = selectedDisability.includes(disability.id);
 
-        {/* Disability Options */}
-        <div className="options-container">
-          {disabilities.map((disability) => {
-            const IconComponent = disability.icon;
-            const isSelected = selectedDisability.includes(disability.id);
-            
-            return (
-              <button
-                key={disability.id}
-                className={`option-item ${isSelected ? 'selected' : ''}`}
-                onClick={() => handleSelect(disability.id)}
-                aria-pressed={isSelected}
-              >
-                <div className="option-icon">
-                  <IconComponent size={20} strokeWidth={2.5} />
+          return (
+            <button
+              key={disability.id}
+              onClick={() => handleSelect(disability.id)}
+              aria-pressed={isSelected}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 16,
+                padding: '18px 20px',
+                background: isSelected ? '#eefbf8' : '#f5f0eb',
+                border: `2px solid ${isSelected ? '#2cc5b0' : 'transparent'}`,
+                borderRadius: 16,
+                cursor: 'pointer',
+                width: '100%',
+                textAlign: 'left',
+                transition: 'all 0.25s ease',
+                boxShadow: isSelected ? '0 4px 16px rgba(44,197,176,0.18)' : 'none',
+              }}
+              onMouseEnter={e => {
+                if (!isSelected) {
+                  e.currentTarget.style.transform = 'translateY(-3px)';
+                  e.currentTarget.style.boxShadow = '0 6px 20px rgba(0,0,0,0.08)';
+                }
+              }}
+              onMouseLeave={e => {
+                if (!isSelected) {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }
+              }}
+            >
+              {/* Icon */}
+              <div style={{
+                width: 48,
+                height: 48,
+                borderRadius: 13,
+                flexShrink: 0,
+                background: isSelected ? disability.color : disability.bg,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: isSelected ? '#ffffff' : disability.color,
+                transition: 'background 0.25s, color 0.25s',
+              }}>
+                <IconComponent size={21} strokeWidth={2.2} />
+              </div>
+
+              {/* Text */}
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: 15, fontWeight: 600, color: '#1a2332', marginBottom: 3 }}>
+                  {disability.label}
                 </div>
-                <span className="option-label">{disability.label}</span>
-                <div className="radio-button">
-                  <div className="radio-inner"></div>
+                <div style={{ fontSize: 13, color: '#6b7b8d', lineHeight: 1.5 }}>
+                  {disability.desc}
                 </div>
-              </button>
-            );
-          })}
-        </div>
+              </div>
 
-        {/* Footer */}
-        <div className="footer">
-          <a href="https://www.inclusivejobs.com/learn-more" className="learn-more">Not sure? Learn more</a>
-          <button 
-            className="continue-button"
-            onClick={handleContinue}
-            disabled={selectedDisability.length === 0}
-          >
-            Continue
-          </button>
-        </div>
+              {/* Check Circle */}
+              <div style={{
+                width: 24,
+                height: 24,
+                borderRadius: '50%',
+                flexShrink: 0,
+                border: `2px solid ${isSelected ? '#2cc5b0' : '#cbd5e0'}`,
+                background: isSelected ? '#2cc5b0' : 'transparent',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'all 0.25s',
+              }}>
+                {isSelected && (
+                  <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M2 6.5L5.5 10L11 3" />
+                  </svg>
+                )}
+              </div>
+            </button>
+          );
+        })}
       </div>
 
-      <style jsx>{`
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-        }
-
-        .app-container {
-          min-height: 100vh;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: linear-gradient(to bottom, #e8f4f8 0%, #b8d8e8 100%);
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
-          padding: 20px;
-        }
-
-        .content {
-          width: 100%;
-          max-width: 500px;
-          padding: 32px 24px;
-          display: flex;
-          flex-direction: column;
-          min-height: 100vh;
-        }
-
-        .logo {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          margin-bottom: 32px;
-        }
-
-        .logo-icon {
-          width: 32px;
-          height: 32px;
-          position: relative;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .butterfly-left,
-        .butterfly-right {
-          width: 14px;
-          height: 18px;
-          background: linear-gradient(135deg, #ff6b9d 0%, #c44569 50%, #4a90e2 100%);
-          border-radius: 50% 50% 50% 0;
-          position: absolute;
-        }
-
-        .butterfly-left {
-          transform: rotate(-45deg);
-          left: 2px;
-        }
-
-        .butterfly-right {
-          transform: rotate(45deg) scaleX(-1);
-          right: 2px;
-        }
-
-        .logo-text {
-          font-size: 14px;
-          font-weight: 700;
-          color: #1a1a1a;
-          letter-spacing: 0.5px;
-        }
-
-        .title-section {
-          margin-bottom: 24px;
-        }
-
-        .main-title {
-          font-size: 32px;
-          font-weight: 700;
-          color: #1a1a1a;
-          margin-bottom: 8px;
-          line-height: 1.2;
-        }
-
-        .subtitle {
-          font-size: 16px;
-          color: #4a5568;
-          line-height: 1.5;
-        }
-
-        .options-container {
-          flex: 1;
-          overflow-y: auto;
-          margin-bottom: 16px;
-          padding-right: 4px;
-        }
-
-        .options-container::-webkit-scrollbar {
-          width: 4px;
-        }
-
-        .options-container::-webkit-scrollbar-thumb {
-          background: rgba(0, 0, 0, 0.2);
-          border-radius: 2px;
-        }
-
-        .option-item {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          padding: 16px;
-          background: white;
-          border: 2px solid transparent;
-          border-radius: 12px;
-          margin-bottom: 10px;
-          cursor: pointer;
-          transition: all 0.2s ease;
-          width: 100%;
-          text-align: left;
-        }
-
-        .option-item:hover {
-          transform: translateX(4px);
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .option-item.selected {
-          background: #e6f2ff;
-          border-color: #3b82f6;
-        }
-
-        .option-icon {
-          width: 40px;
-          height: 40px;
-          background: #f0f4f8;
-          border-radius: 10px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: #2d3748;
-          flex-shrink: 0;
-        }
-
-        .option-item.selected .option-icon {
-          background: #3b82f6;
-          color: white;
-        }
-
-        .option-label {
-          flex: 1;
-          font-size: 16px;
-          font-weight: 500;
-          color: #2d3748;
-        }
-
-        .radio-button {
-          width: 24px;
-          height: 24px;
-          border: 2px solid #cbd5e0;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
-          transition: all 0.2s ease;
-        }
-
-        .option-item.selected .radio-button {
-          border-color: #3b82f6;
-          background: #3b82f6;
-        }
-
-        .radio-inner {
-          width: 10px;
-          height: 10px;
-          background: white;
-          border-radius: 50%;
-          opacity: 0;
-          transition: opacity 0.2s ease;
-        }
-
-        .option-item.selected .radio-inner {
-          opacity: 1;
-        }
-
-        .footer {
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-        }
-
-        .learn-more {
-          text-align: center;
-          font-size: 14px;
-          color: #3b82f6;
-          text-decoration: none;
-          padding: 8px;
-          font-weight: 500;
-        }
-
-        .learn-more:hover {
-          text-decoration: underline;
-        }
-
-        .continue-button {
-          width: 100%;
-          padding: 16px;
-          background: #1e3a8a;
-          color: white;
-          border: none;
-          border-radius: 12px;
-          font-size: 16px;
-          font-weight: 600;
-          cursor: pointer;
-          transition: all 0.2s ease;
-        }
-
-        .continue-button:hover:not(:disabled) {
-          background: #1e40af;
-          transform: translateY(-2px);
-          box-shadow: 0 8px 16px rgba(30, 58, 138, 0.3);
-        }
-
-        .continue-button:disabled {
-          opacity: 0.5;
-          cursor: not-allowed;
-        }
-
-        @media (max-width: 768px) {
-          .content {
-            padding: 24px 20px;
-          }
-
-          .main-title {
-            font-size: 28px;
-          }
-        }
-      `}</style>
+      {/* Continue Button */}
+      <div style={{ marginTop: 40, textAlign: 'center' }}>
+        <button
+          onClick={handleContinue}
+          disabled={selectedDisability.length === 0}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 8,
+            background: selectedDisability.length > 0 ? '#1a2332' : '#6b7b8d',
+            color: '#ffffff',
+            padding: '13px 30px',
+            borderRadius: 12,
+            fontSize: 15,
+            fontWeight: 600,
+            border: 'none',
+            cursor: selectedDisability.length > 0 ? 'pointer' : 'not-allowed',
+            boxShadow: selectedDisability.length > 0 ? '0 4px 16px rgba(26,35,50,0.25)' : 'none',
+            transition: 'transform 0.2s, box-shadow 0.2s, background 0.25s',
+          }}
+          onMouseEnter={e => {
+            if (selectedDisability.length > 0) {
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow = '0 8px 24px rgba(26,35,50,0.35)';
+            }
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = selectedDisability.length > 0 ? '0 4px 16px rgba(26,35,50,0.25)' : 'none';
+          }}
+        >
+          {selectedDisability.length > 0
+            ? `Continue with ${selectedDisability.length} selected`
+            : 'Select a category to continue'}
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M3 8h10M9 4l4 4-4 4" />
+          </svg>
+        </button>
+      </div>
     </div>
   );
 };
