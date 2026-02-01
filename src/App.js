@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Check, Star, ChevronDown, MapPin, Users, TrendingUp, Calendar, Building } from 'lucide-react';
+import { ArrowRight,  Star, ChevronDown, MapPin, Users, TrendingUp, } from 'lucide-react';
 import './App.css';
 
 /* ─── THEME (Updated with colors from images) ─── */
@@ -97,10 +97,10 @@ function Nav() {
           ))}
         </div>
 
-        <a href="#" style={{
-          fontSize: 14, fontWeight: 600, color: vars.white, textDecoration: 'none',
-          background: vars.teal, padding: '8px 18px', borderRadius: 8,
-        }}>Sign In</a>
+       <button onClick={() => {/* Add sign in logic */}} style={{
+  fontSize: 14, fontWeight: 600, color: vars.white, textDecoration: 'none',
+  background: vars.teal, padding: '8px 18px', borderRadius: 8, border: 'none', cursor: 'pointer',
+}}>Sign In</button>
       </div>
     </nav>
   );
@@ -847,20 +847,21 @@ function Jobs() {
         {/* View More Button */}
         <Reveal delay={0.3}>
           <div style={{ textAlign: 'center', marginTop: 48 }}>
-            <a href="#" style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 8,
-              background: vars.teal,
-              color: vars.white,
-              padding: '14px 32px',
-              borderRadius: 12,
-              fontSize: 15,
-              fontWeight: 600,
-              textDecoration: 'none',
-              boxShadow: '0 4px 16px rgba(14,165,233,0.25)',
-              transition: 'transform 0.2s, box-shadow 0.2s',
-            }}
+           <button onClick={() => {/* Add navigation logic */}} style={{
+  display: 'inline-flex',
+  alignItems: 'center',
+  gap: 8,
+  background: vars.teal,
+  color: vars.white,
+  padding: '14px 32px',
+  borderRadius: 12,
+  fontSize: 15,
+  fontWeight: 600,
+  border: 'none',
+  cursor: 'pointer',
+  boxShadow: '0 4px 16px rgba(14,165,233,0.25)',
+  transition: 'transform 0.2s, box-shadow 0.2s',
+}}
               onMouseEnter={e => { 
                 e.currentTarget.style.transform = 'translateY(-2px)'; 
                 e.currentTarget.style.boxShadow = '0 8px 24px rgba(14,165,233,0.35)'; 
@@ -871,7 +872,7 @@ function Jobs() {
               }}
             >
               View All Jobs <ArrowRight size={18} />
-            </a>
+            </button>
           </div>
         </Reveal>
       </div>
@@ -1266,18 +1267,26 @@ function CtaBanner() {
           <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.5)', maxWidth: 460, margin: '0 auto 30px', lineHeight: 1.6, position: 'relative', zIndex: 1 }}>
             Whether you're hiring or job-seeking, InclusiveJobs is your first step toward a more inclusive future.
           </p>
-          <a href="#" style={{
-            display: 'inline-flex', alignItems: 'center', gap: 8, position: 'relative', zIndex: 1,
-            background: vars.teal, color: vars.white,
-            padding: '14px 30px', borderRadius: 12, fontSize: 15, fontWeight: 600,
-            textDecoration: 'none', boxShadow: '0 4px 16px rgba(14,165,233,0.35)',
-            transition: 'transform 0.2s, box-shadow 0.2s',
-          }}
+         <button onClick={() => {/* Add navigation logic */}} style={{
+  display: 'inline-flex',
+  alignItems: 'center',
+  gap: 8,
+  background: vars.teal,
+  color: vars.white,
+  padding: '14px 32px',
+  borderRadius: 12,
+  fontSize: 15,
+  fontWeight: 600,
+  border: 'none',
+  cursor: 'pointer',
+  boxShadow: '0 4px 16px rgba(14,165,233,0.25)',
+  transition: 'transform 0.2s, box-shadow 0.2s',
+}}
             onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(14,165,233,0.45)'; }}
             onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 16px rgba(14,165,233,0.35)'; }}
           >
             Get Started Free <ArrowRight size={18} />
-          </a>
+          </button>
         </div>
       </Reveal>
     </section>
@@ -1306,10 +1315,10 @@ function Footer() {
             <h5 style={{ fontSize: 12, fontWeight: 600, color: vars.white, textTransform: 'uppercase', letterSpacing: '1px', marginBottom: 18 }}>{c.title}</h5>
             {c.links.map(l => (
               <div key={l} style={{ marginBottom: 10 }}>
-                <a href="#" style={{ fontSize: 14, color: 'rgba(255,255,255,0.4)', textDecoration: 'none', transition: 'color 0.2s' }}
+                <button style={{ fontSize: 14, color: 'rgba(255,255,255,0.4)', textDecoration: 'none', transition: 'color 0.2s', background: 'none', border: 'none', cursor: 'pointer', padding: 0, font: 'inherit' }}
                   onMouseEnter={e => e.target.style.color = vars.teal}
                   onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.4)'}
-                >{l}</a>
+                >{l}</button>
               </div>
             ))}
           </div>
