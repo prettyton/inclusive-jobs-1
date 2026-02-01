@@ -81,13 +81,7 @@ function Nav() {
     }}>
       <div style={{ maxWidth: 1160, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 28px' }}>
         <a href="#home" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
-          <div style={{
-            width: 44, height: 44, background: vars.navy, borderRadius: 12,
-            position: 'relative', overflow: 'hidden',
-          }}>
-            <div style={{ position: 'absolute', width: 16, height: 21, borderRadius: '50% 50% 50% 0', background: vars.teal, top: 10, left: 5, transform: 'rotate(-40deg)' }} />
-            <div style={{ position: 'absolute', width: 16, height: 21, borderRadius: '50% 50% 50% 0', background: vars.coral, top: 10, right: 5, transform: 'rotate(40deg) scaleX(-1)' }} />
-          </div>
+          <img src="/logo.png" alt="InclusiveJobs" style={{ width: 44, height: 44, objectFit: 'contain', display: 'block' }} />
           <span style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: 18, fontWeight: 700, color: vars.navy }}>InclusiveJobs</span>
         </a>
 
@@ -113,66 +107,98 @@ function Nav() {
 }
 
 /* ─── HERO ─── */
+const HERO_IMAGE_URL = 'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1200&q=80';
+
 function Hero() {
   return (
     <section id="home" style={{
-      minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center',
-      padding: '140px 28px 100px', position: 'relative', overflow: 'hidden', background: vars.white,
+      minHeight: '100vh', display: 'flex', alignItems: 'center',
+      padding: '140px 0 100px', position: 'relative', overflow: 'hidden',
     }}>
-      <div style={{ position: 'absolute', width: 480, height: 480, background: vars.teal, borderRadius: '50%', filter: 'blur(100px)', opacity: 0.15, top: -120, right: -140, pointerEvents: 'none' }} />
-      <div style={{ position: 'absolute', width: 360, height: 360, background: vars.coral, borderRadius: '50%', filter: 'blur(90px)', opacity: 0.12, bottom: -80, left: -100, pointerEvents: 'none' }} />
-
-      <div style={{ position: 'relative', zIndex: 1, maxWidth: 760, textAlign: 'center' }}>
+      {/* Full-bleed background image */}
+      <div style={{
+        position: 'absolute', inset: 0, zIndex: 0,
+      }}>
+        <img
+          src={HERO_IMAGE_URL}
+          alt="Person looking for a job — inclusive career search"
+          style={{
+            width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center',
+            display: 'block',
+          }}
+        />
         <div style={{
-          display: 'inline-flex', alignItems: 'center', gap: 7,
-          background: vars.tealLight, color: vars.teal,
-          fontSize: 13, fontWeight: 600, padding: '6px 16px', borderRadius: 20, marginBottom: 28,
+          position: 'absolute', inset: 0,
+          background: 'linear-gradient(to right, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.4) 45%, rgba(0,0,0,0.15) 70%, transparent 100%)',
+          pointerEvents: 'none',
+        }} />
+      </div>
+
+      <div style={{
+        position: 'relative', zIndex: 1, maxWidth: 1160, width: '100%', margin: '0 auto',
+        padding: '0 28px', display: 'flex', alignItems: 'center',
+      }}>
+        <div style={{
+          maxWidth: 560, textAlign: 'left',
+          background: 'rgba(0,0,0,0.35)',
+          backdropFilter: 'blur(16px)',
+          WebkitBackdropFilter: 'blur(16px)',
+          borderRadius: 20,
+          padding: '40px 36px',
+          border: '1px solid rgba(255,255,255,0.12)',
+          boxShadow: '0 8px 32px rgba(0,0,0,0.25)',
         }}>
-          <Star size={20} fill={vars.teal} /> Trusted by 12,000+ individuals &amp; employers
-        </div>
+          <div style={{
+            display: 'inline-flex', alignItems: 'center', gap: 7,
+            background: 'rgba(255,255,255,0.2)', color: vars.white,
+            fontSize: 13, fontWeight: 600, padding: '6px 16px', borderRadius: 20, marginBottom: 28,
+          }}>
+            <Star size={20} fill={vars.white} /> Trusted by 12,000+ individuals &amp; employers
+          </div>
 
-        <h1 style={{
-          fontFamily: "'Fraunces', Georgia, serif",
-          fontSize: 'clamp(42px, 7vw, 70px)', fontWeight: 700,
-          color: vars.navy, lineHeight: 1.1, letterSpacing: '-1.5px', marginBottom: 20,
-        }}>
-          Inclusive careers,<br />
-          <em style={{ fontStyle: 'italic', color: vars.teal }}>built for everyone</em>
-        </h1>
+          <h1 style={{
+            fontFamily: "'Fraunces', Georgia, serif",
+            fontSize: 'clamp(42px, 7vw, 70px)', fontWeight: 700,
+            color: vars.white, lineHeight: 1.1, letterSpacing: '-1.5px', marginBottom: 20,
+          }}>
+            Inclusive careers,<br />
+            <em style={{ fontStyle: 'italic', color: vars.tealLight }}>built for everyone</em>
+          </h1>
 
-        <p style={{ fontSize: 18, color: vars.textMuted, maxWidth: 540, margin: '0 auto 38px', lineHeight: 1.7 }}>
-          InclusiveJobs bridges the gap between talented individuals with disabilities and employers who value diversity — celebrating every ability.
-        </p>
+          <p style={{ fontSize: 18, color: 'rgba(255,255,255,0.9)', marginBottom: 38, lineHeight: 1.7 }}>
+            InclusiveJobs bridges the gap between talented individuals with disabilities and employers who value diversity — celebrating every ability.
+          </p>
 
-        <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
-          <a href="#jobs" style={{
-            display: 'inline-flex', alignItems: 'center', gap: 8,
-            background: vars.navy, color: vars.white,
-            padding: '14px 28px', borderRadius: 12, fontSize: 15, fontWeight: 600,
-            textDecoration: 'none', boxShadow: '0 4px 18px rgba(30,41,59,0.28)',
-            transition: 'transform 0.2s, box-shadow 0.2s',
-          }}
-            onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 28px rgba(30,41,59,0.38)'; }}
-            onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 18px rgba(30,41,59,0.28)'; }}
-          >
-            For Employers <ArrowRight size={18} />
-          </a>
-          <a href="#jobs" style={{
-            display: 'inline-flex', alignItems: 'center', gap: 8,
-            background: 'transparent', color: vars.navy,
-            padding: '14px 28px', borderRadius: 12, fontSize: 15, fontWeight: 600,
-            textDecoration: 'none', border: `1.5px solid ${vars.navy}`,
-            transition: 'background 0.2s',
-          }}
-            onMouseEnter={e => e.currentTarget.style.background = 'rgba(30,41,59,0.05)'}
-            onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
-          >
-            For Candidates <ArrowRight size={18} />
-          </a>
+          <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+            <a href="#jobs" style={{
+              display: 'inline-flex', alignItems: 'center', gap: 8,
+              background: vars.white, color: vars.navy,
+              padding: '14px 28px', borderRadius: 12, fontSize: 15, fontWeight: 600,
+              textDecoration: 'none', boxShadow: '0 4px 18px rgba(0,0,0,0.2)',
+              transition: 'transform 0.2s, box-shadow 0.2s',
+            }}
+              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 28px rgba(0,0,0,0.3)'; }}
+              onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 18px rgba(0,0,0,0.2)'; }}
+            >
+              For Employers <ArrowRight size={18} />
+            </a>
+            <a href="#jobs" style={{
+              display: 'inline-flex', alignItems: 'center', gap: 8,
+              background: 'transparent', color: vars.white,
+              padding: '14px 28px', borderRadius: 12, fontSize: 15, fontWeight: 600,
+              textDecoration: 'none', border: '1.5px solid rgba(255,255,255,0.8)',
+              transition: 'background 0.2s',
+            }}
+              onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.15)'}
+              onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+            >
+              For Candidates <ArrowRight size={18} />
+            </a>
+          </div>
         </div>
       </div>
 
-      <a href="#services" style={{ position: 'absolute', bottom: 32, left: '50%', transform: 'translateX(-50%)', color: vars.textMuted, textDecoration: 'none' }}>
+      <a href="#services" style={{ position: 'absolute', bottom: 32, left: '50%', transform: 'translateX(-50%)', color: 'rgba(255,255,255,0.8)', textDecoration: 'none', zIndex: 2 }}>
         <ChevronDown size={32} style={{ animation: 'bounce 2s infinite' }} />
       </a>
     </section>
@@ -222,16 +248,19 @@ function Services() {
       title: 'Curate Talent',
       desc: 'We source and vet candidates based on their professional expertise and potential.',
       icon: '🎯',
+      image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80',
     },
     {
       title: 'Facilitate Access',
       desc: 'We ensure the recruitment process is fully accessible from the first click to the final interview.',
       icon: '🔓',
+      image: 'https://images.unsplash.com/photo-1584438780864-5669d7bf9380?w=600&q=80',
     },
     {
       title: 'Consult & Educate',
       desc: 'We help companies transition from "wanting to be inclusive" to "being inclusive" through practical strategies and support.',
       icon: '📚',
+      image: 'https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=600&q=80',
     },
   ];
 
@@ -528,7 +557,7 @@ function Services() {
               <div style={{
                 background: vars.lightGray,
                 borderRadius: 16,
-                padding: '32px 28px',
+                overflow: 'hidden',
                 textAlign: 'center',
                 transition: 'transform 0.3s, box-shadow 0.3s',
                 border: '1px solid rgba(30,41,59,0.06)',
@@ -543,35 +572,40 @@ function Services() {
                 }}
               >
                 <div style={{
-                  width: 64,
-                  height: 64,
-                  borderRadius: '50%',
-                  background: vars.white,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: 32,
-                  margin: '0 auto 20px',
-                  boxShadow: '0 4px 12px rgba(30,41,59,0.06)',
+                  width: '100%',
+                  height: 180,
+                  overflow: 'hidden',
+                  background: vars.creamDark,
                 }}>
-                  {item.icon}
+                  <img
+                    src={item.image}
+                    alt=""
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      display: 'block',
+                    }}
+                  />
                 </div>
-                <h4 style={{
-                  fontFamily: "'Fraunces', Georgia, serif",
-                  fontSize: 20,
-                  fontWeight: 600,
-                  color: vars.navy,
-                  marginBottom: 12,
-                }}>
-                  {item.title}
-                </h4>
-                <p style={{
-                  fontSize: 14,
-                  color: vars.textMuted,
-                  lineHeight: 1.7,
-                }}>
-                  {item.desc}
-                </p>
+                <div style={{ padding: '24px 28px 32px' }}>
+                  <h4 style={{
+                    fontFamily: "'Fraunces', Georgia, serif",
+                    fontSize: 20,
+                    fontWeight: 600,
+                    color: vars.navy,
+                    marginBottom: 12,
+                  }}>
+                    {item.title}
+                  </h4>
+                  <p style={{
+                    fontSize: 14,
+                    color: vars.textMuted,
+                    lineHeight: 1.7,
+                  }}>
+                    {item.desc}
+                  </p>
+                </div>
               </div>
             </Reveal>
           ))}
@@ -973,14 +1007,18 @@ function About() {
       <div style={{ maxWidth: 1140, margin: '0 auto' }}>
         {/* Main About Content */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center', marginBottom: 100 }}>
-          {/* visual */}
+          {/* visual - recruitment in progress */}
           <Reveal>
             <div style={{ position: 'relative' }}>
-              <div style={{
-                width: '100%', aspectRatio: '4/3', borderRadius: 24,
-                background: 'linear-gradient(135deg, #e0f2fe 0%, #ffedd5 100%)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 72,
-              }}>🌍</div>
+              <img
+                src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=800&q=80"
+                alt="Recruitment in progress — inclusive hiring"
+                style={{
+                  width: '100%', aspectRatio: '4/3', borderRadius: 24,
+                  objectFit: 'cover', display: 'block',
+                  boxShadow: '0 12px 40px rgba(30,41,59,0.12)',
+                }}
+              />
               <div style={{
                 position: 'absolute', bottom: -22, right: -22,
                 background: vars.white, borderRadius: 16, padding: '16px 20px',
@@ -1257,7 +1295,10 @@ function Footer() {
     <footer style={{ background: vars.navy, color: 'rgba(255,255,255,0.45)', padding: '60px 28px 28px' }}>
       <div style={{ maxWidth: 1140, margin: '0 auto', display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: 48 }}>
         <div>
-          <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: 20, fontWeight: 700, color: vars.white, marginBottom: 12 }}>InclusiveJobs</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
+            <img src="/logo.png" alt="InclusiveJobs" style={{ width: 40, height: 40, objectFit: 'contain', display: 'block' }} />
+            <span style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: 20, fontWeight: 700, color: vars.white }}>InclusiveJobs</span>
+          </div>
           <p style={{ fontSize: 13, lineHeight: 1.7, maxWidth: 260 }}>Bridging the gap between talented individuals and employers who value every ability. Built with care, designed for everyone.</p>
         </div>
         {cols.map(c => (
